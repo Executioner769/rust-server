@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100&display=swap");
+
+:root {
+    --bg-color1: hsl(49 37% 94%);
+    --type-animation-forward-speed: 5s;
+    --text-characters-count: 24;
+}
+
+body {
+    margin: 0;
+    font-family: "Source Code Pro", monospace;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    background-color: var(--bg-color1);
+}
+
+.title {
+    width: max-content;
+    font-size: 2rem;
+    font-weight: 100;
+    position: relative;
+}
+
+.title::after,
+.title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.title::before {
+    background-color: var(--bg-color1);
+    animation: type-animation-forward var(--type-animation-forward-speed)
+        steps(var(--text-characters-count)) 1s forwards;
+}
+
+.title::after {
+    width: 0.1em;
+    background: black;
+    animation: type-animation-forward var(--type-animation-forward-speed)
+            steps(var(--text-characters-count)) 1s forwards,
+        blink 500ms steps(var(--text-characters-count)) infinite;
+}
+
+.subtitle {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(3rem);
+    animation: fadeInUp 1s calc(var(--type-animation-forward-speed) + 2s)
+        forwards;
+}
+
+@keyframes type-animation-forward {
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes blink {
+    to {
+        background: transparent;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
